@@ -38,7 +38,7 @@ mujeres_fumadoras = cantidad_gente_smoker[False, True]
 print(f"La cantidad de hombres fumadores es: {hombres_fumadores}")
 print(f"La cantidad de mujeres fumadoras es: {mujeres_fumadoras}")
 
-#Parte 4
+#Parte 4 Apis
 
 def download_csv(url):
     response = requests.get(url)
