@@ -23,3 +23,16 @@ promedio_edad_vivos = df_vivos['age'].mean()
 
 print(f"El promedio de edad de las personas que fallecieron en el estudio es: {promedio_edad_muertos}")
 print(f"El promedio de edad de las personas que sobrevivieron en el estudio es: {promedio_edad_vivos}")
+
+#Parte 3
+
+print(df.dtypes)
+
+cantidad_gente_smoker = df.groupby(['is_male', 'is_smoker']).size()
+
+hombres_fumadores = cantidad_gente_smoker[True, True]
+mujeres_fumadoras = cantidad_gente_smoker[False, True]
+
+
+print(f"La cantidad de hombres fumadores es: {hombres_fumadores}")
+print(f"La cantidad de mujeres fumadoras es: {mujeres_fumadoras}")
