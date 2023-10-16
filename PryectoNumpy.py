@@ -1,6 +1,7 @@
 from datasets import load_dataset
 import numpy as np
 import pandas as pd
+import requests
 
 #Parte 1
 
@@ -36,3 +37,15 @@ mujeres_fumadoras = cantidad_gente_smoker[False, True]
 
 print(f"La cantidad de hombres fumadores es: {hombres_fumadores}")
 print(f"La cantidad de mujeres fumadoras es: {mujeres_fumadoras}")
+
+#Parte 4
+
+def download_csv(url):
+    response = requests.get(url)
+    name_new_csv = url.split("/")[-1] 
+
+    with open(name_new_csv , 'w') as archivo:
+        archivo.write(response.text)
+
+
+download_csv('https://huggingface.co/datasets/mstz/heart_failure/raw/main/heart_failure_clinical_records_dataset.csv')
