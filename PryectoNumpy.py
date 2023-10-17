@@ -49,3 +49,39 @@ def download_csv(url):
 
 
 download_csv('https://huggingface.co/datasets/mstz/heart_failure/raw/main/heart_failure_clinical_records_dataset.csv')
+
+#Parte 5 Clean data
+
+def process_data(df):
+    
+    try:
+        valores_faltantes = df.isnull().sum().sum()
+        if valores_faltantes > 0:
+            raise ValueError(f"El DataFrame tiene {valores_faltantes} valores faltantes.")
+    except ValueError as e:
+        print(e)
+
+    try:
+        filas_repetidas = df.duplicated().sum()
+        if filas_repetidas > 0:
+            raise ValueError(f"El DataFrame tiene {filas_repetidas} filas duplicadas.")
+    except ValueError as e:
+        print(e)
+
+    
+    Q1 = df['age'].quantile(0.25)
+    Q3 = df['age'].quantile(0.75)
+    IQR = Q3 - Q1
+    df = df[~((df['age'] < (Q1 - 1.5 * IQR)) | (df['age'] > (Q3 + 1.5 * IQR)))]
+
+    
+    bins = [0, 12, 19, 39, 59, np.inf]
+    labels = ['Niño', 'Adolescente', 'Jóvenes adulto', 'Adulto', 'Adulto mayor']
+    df['categoria_edad'] = pd.cut(df['age'], bins=bins, labels=labels)
+
+    
+    df.to_csv('datos_procesados.csv', index=False)
+    return df
+
+
+df_procesado = process_data(df)
