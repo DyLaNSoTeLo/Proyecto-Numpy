@@ -85,3 +85,6 @@ def process_data(df):
 
 
 df_procesado = process_data(df)
+
+#Parte 6 ETL
+
