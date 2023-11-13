@@ -1,8 +1,8 @@
-import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.tree import DecisionTreeClassifier
 import seaborn as sns
+import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv('datos_procesados_2.csv')
