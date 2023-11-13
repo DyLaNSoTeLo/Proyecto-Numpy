@@ -1,5 +1,6 @@
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix, f1_score, accuracy_score
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 import seaborn as sns
 import pandas as pd
@@ -23,6 +24,30 @@ if 'smoking' in df.columns:
 
     y_pred = model.predict(X_test)
 
-    acc = accuracy_score(y_test, y_pred)
+    acc_s = accuracy_score(y_test, y_pred)
 
-    print('Accuracy: ', acc)
+    print('Accuracy: ', acc_s)
+
+
+#Parte 12
+
+
+    model = RandomForestClassifier()
+    model.fit(X_train, y_train)
+
+    
+    y_pred = model.predict(X_test)
+
+    
+    acc_s = accuracy_score(y_test, y_pred)
+    
+   
+    f1_e = f1_score(y_test, y_pred)
+
+
+    conf_matrx = confusion_matrix(y_test, y_pred)
+
+    print('Accuracy: ', acc_s)
+    print('Confusion Matrix: \n', conf_matrx )
+    print('F1-Score: ', f1_e)
+
